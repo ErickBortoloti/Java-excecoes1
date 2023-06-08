@@ -44,9 +44,20 @@ public class reservas {
 		return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS); //calcular diferenca em dias.
 	}
 	
-	public void mudarDatas(Date checkin, Date checkout) {
+	public String mudarDatas(Date checkin, Date checkout) {
+		
+		Date now = new Date();
+		if(checkin.before(now) || checkout.before(now)) {
+			return "Erro na reserva: as datas de reservas tem que ser datas futuras";
+		}
+		if (!checkout.after(checkin)) {
+			return "Erro na reserva: as datas de reservas tem que ser datas futuras";
+		}
+		
+		
 		this.checkin = checkin;
 		this.checkout = checkout;
+		return null;
 		
 	}
 	

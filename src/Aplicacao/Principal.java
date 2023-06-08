@@ -37,17 +37,12 @@ public class Principal {
 		checkout = ds.parse(teclado.next());
 		
 		
-		Date now = new Date();
-		if(check.before(now) || checkout.before(now)) {
-			System.out.println("Erro na reserva: as datas de reservas tem que ser datas futuras");
-		}
-		else if (!checkout.after(check)) {
-			System.out.println("Erro na reserva: as datas de reservas tem que ser datas futuras");
+		String erro = reserva.mudarDatas(check, checkout);
+		if (erro != null) {
+			System.out.println("Erro na reserva: " + erro);
 		}
 		else {
-			reserva.mudarDatas(check, checkout);
 			System.out.println("Reserva: " + reserva);
-		}
 		
 		
 
@@ -55,4 +50,5 @@ public class Principal {
 
 	}
 
+	}
 }
